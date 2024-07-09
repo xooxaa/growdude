@@ -1,0 +1,125 @@
+* {
+  color: #261813;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.login {
+  background-color: #c1b8ab;
+}
+
+.app-container {
+  background-color: #c1b8ab;
+  max-width: 432px;
+  margin: 0 auto;
+}
+
+mat-drawer-content {
+  height: 100vh;
+}
+
+mat-drawer {
+  width: 70%;
+  max-width: 400px;
+}
+
+.sidenav-container {
+  height: 100vh;
+  background-color: #f8e9cc;
+  position: relative;
+}
+
+.home-link {
+  color: inherit;
+  text-decoration: none;
+  font-family: Wellfleet;
+  font-size: 2rem;
+}
+.home-link:hover {
+  cursor: pointer;
+}
+
+.nav-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+
+  padding: 1rem;
+}
+
+.nav-header-icon {
+  width: 48px;
+}
+.nav-header-icon:hover {
+  cursor: pointer;
+}
+
+.nav-header-logo {
+  width: 100px;
+  margin-left: auto;
+}
+
+.nav-items {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.nav-item {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 600;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2rem;
+}
+.nav-item:hover {
+  cursor: pointer;
+}
+
+.nav-item p {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.nav-item-icon {
+  width: 64px;
+}
+
+.nav-profile {
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  padding: 2rem 1rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.nav-user-logo {
+  width: 45%;
+}
+.nav-user-logo img {
+  width: 100%;
+}
+
+.nav-user-links {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-signout {
+  display: flex;
+  align-items: center;
+}
+.nav-signout:hover {
+  cursor: pointer;
+}

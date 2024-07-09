@@ -1,1 +1,36 @@
-<p>user-register works!</p>
+<form class="login-form" [formGroup]="registerForm">
+  <img src="/img/logo.webp" alt="Growdude Logo" />
+  <h1>GROWDU.DE</h1>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      placeholder="Gib deinen Namen ein"
+      formControlName="email"
+    />
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Gib deine Email ein" formControlName="email" />
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="Wähle dein Passwort"
+      formControlName="password"
+    />
+    <mat-icon matSuffix>password</mat-icon>
+  </mat-form-field>
+
+  <button mat-flat-button class="btn" (click)="onRegister()">
+    Registrieren
+  </button>
+  <button mat-raised-button class="btn" (click)="onLogin()">Anmelden</button>
+</form>

@@ -3,10 +3,22 @@ import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 @Component({
   selector: 'app-user-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.css',
 })
@@ -19,6 +31,14 @@ export class UserLoginComponent {
     email: ['two@some.user'],
     password: ['aahg437879h(/HT/)($Ha'],
   });
+
+  isLoggedIn = this.authService.isLoggedIn;
+
+  constructor() {
+    if (this.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   async onLogin() {
     try {
@@ -33,5 +53,9 @@ export class UserLoginComponent {
     } catch {
       console.error('Bad Credentials');
     }
+  }
+
+  async onRegister() {
+    await this.router.navigate(['/register']);
   }
 }

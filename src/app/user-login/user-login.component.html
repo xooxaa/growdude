@@ -1,25 +1,26 @@
-<div class="login">
-  <div class="login-form" [formGroup]="loginForm">
-    <h3>Login</h3>
+<form class="login-form" [formGroup]="loginForm">
+  <img src="/img/logo.webp" alt="Growdude Logo" />
+  <h1>GROWDU.DE</h1>
 
-    <div class="form-control">
-      <label>Email:</label>
-      <input placeholder="Enter your email" formControlName="email" />
-    </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Gib deine Email ein" formControlName="email" />
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
 
-    <div class="form-control">
-      <label>Password:</label>
-      <input
-        type="password"
-        placeholder="Enter your password"
-        formControlName="password"
-      />
-    </div>
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="Gib dein Passwort ein"
+      formControlName="password"
+    />
+    <mat-icon matSuffix>password</mat-icon>
+  </mat-form-field>
 
-  <div class="form-actions">
-    <button class="btn" routerLink="/home">Home</button>
-
-    <button class="btn" (click)="onLogin()">Login</button>
-  </div>
-</div>
+  <button mat-flat-button class="btn" (click)="onLogin()">Anmelden</button>
+  <button mat-raised-button class="btn" (click)="onRegister()">
+    Registrieren
+  </button>
+</form>

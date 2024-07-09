@@ -26,6 +26,8 @@ export class AuthService {
       const user = this.user();
       if (user) {
         localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+      } else {
+        localStorage.removeItem(USER_STORAGE_KEY);
       }
     });
   }
@@ -35,6 +37,19 @@ export class AuthService {
     if (userToken) {
       this.#userSignal.set(JSON.parse(userToken));
     }
+  }
+
+  async register(name: string, email: string, password: string): Promise<User> {
+    const register$ = this.http.put<User>(`http://localhost:3000/auth/signup`, {
+      name,
+      email,
+      password,
+    });
+
+    const user = await firstValueFrom(register$);
+    this.#userSignal.set(user);
+
+    return user;
   }
 
   async login(email: string, password: string): Promise<User> {
@@ -50,7 +65,13 @@ export class AuthService {
   }
 
   async logout() {
-    localStorage.removeItem(USER_STORAGE_KEY);
+    const logout$ = this.http.post<User>(
+      `http://localhost:3000/auth/signout`,
+      {}
+    );
+
+    const response = await firstValueFrom(logout$);
+
     this.#userSignal.set(null);
     await this.router.navigate(['']);
   }

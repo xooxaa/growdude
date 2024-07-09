@@ -1,1 +1,70 @@
-<router-outlet />
+@if (isLoggedIn()) {
+<mat-drawer-container class="app-container" hasBackdrop="true">
+  <mat-drawer #drawer mode="over">
+    <div class="sidenav-container">
+      <div class="nav-header">
+        <img
+          class="nav-header-icon"
+          src="img/close.png"
+          alt="Close Side Navigation"
+          (click)="drawer.toggle()"
+        />
+        <a class="home-link" routerLink="/dashboard">GROWDU.DE</a>
+      </div>
+
+      <div class="nav-items">
+        <a class="nav-item" routerLink="/stations">
+          <img
+            class="nav-item-icon"
+            src="img/stations.png"
+            (click)="drawer.toggle()"
+          />
+          <p class="nav-link">Stationen</p>
+        </a>
+        <a class="nav-item" routerLink="/sensors">
+          <img
+            class="nav-item-icon"
+            src="img/sensors.png"
+            (click)="drawer.toggle()"
+          />
+          <p class="nav-link">Sensoren</p>
+        </a>
+      </div>
+
+      <div class="nav-profile">
+        <a routerLink="/user" class="nav-user-logo">
+          <img src="img/logo_round.webp" alt="" />
+        </a>
+        <div class="nav-user-links">
+          <a routerLink="/user"> <h3 class="nav-user-name">USERNAME</h3> </a>
+          <p class="nav-signout" (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Abmelden</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div class="nav-header">
+      <img
+        class="nav-header-icon"
+        src="img/menu.png"
+        alt="Open Side Navigation"
+        (click)="drawer.toggle()"
+      />
+      <a class="home-link" routerLink="/dashboard">GROWDU.DE</a>
+
+      <a routerLink="/user" class="nav-header-logo">
+        <img class="nav-header-logo" src="img/logo.webp" alt="" />
+      </a>
+    </div>
+    <router-outlet />
+  </mat-drawer-content>
+</mat-drawer-container>
+} @else {
+<div class="login">
+  <router-outlet />
+</div>
+}
