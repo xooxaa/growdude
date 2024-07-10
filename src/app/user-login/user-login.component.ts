@@ -28,8 +28,8 @@ export class UserLoginComponent {
   formBuilder = inject(FormBuilder);
 
   loginForm = this.formBuilder.group({
-    email: ['two@some.user'],
-    password: ['aahg437879h(/HT/)($Ha'],
+    email: ['gardener@420.com'],
+    password: ['fh4387h78f34/HRd32/(D32'],
   });
 
   isLoggedIn = this.authService.isLoggedIn;
@@ -48,7 +48,7 @@ export class UserLoginComponent {
         return;
       }
 
-      const user = await this.authService.login(email, password);
+      await this.authService.loginExistingUser(email, password);
       await this.router.navigate(['/dashboard']);
     } catch {
       console.error('Bad Credentials');

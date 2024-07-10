@@ -65,7 +65,7 @@ mat-drawer {
 }
 
 .nav-items {
-  margin-top: 3rem;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -73,11 +73,11 @@ mat-drawer {
 
 .nav-item {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   font-weight: 600;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 2rem;
+  margin-left: 2.5rem;
 }
 .nav-item:hover {
   cursor: pointer;
@@ -86,11 +86,11 @@ mat-drawer {
 .nav-item p {
   margin: 0;
   padding: 0;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 .nav-item-icon {
-  width: 64px;
+  width: 48px;
 }
 
 .nav-profile {
@@ -104,16 +104,20 @@ mat-drawer {
 }
 
 .nav-user-logo {
-  width: 45%;
+  width: 40%;
 }
 .nav-user-logo img {
   width: 100%;
 }
 
 .nav-user-links {
-  width: 55%;
+  width: 60%;
   display: flex;
   flex-direction: column;
+}
+
+.nav-user-name {
+  font-weight: 600;
 }
 
 .nav-signout {
@@ -122,4 +126,8 @@ mat-drawer {
 }
 .nav-signout:hover {
   cursor: pointer;
+}
+
+.home-container {
+  padding: 1.5rem;
 }

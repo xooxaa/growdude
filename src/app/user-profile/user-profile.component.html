@@ -1,1 +1,15 @@
-<p>user-profile works!</p>
+<div class="profile-card">
+  <h1 class="mb-0">Profil von {{ user()?.name }}</h1>
+  <p class="user-id">User ID: {{ user()?.id }}</p>
+
+  <p>Email: {{ user()?.email }}</p>
+
+  <div class="d-flex flex-row-reverse mt-5">
+    <button mat-flat-button (click)="onChangePassword()">
+      Passwort ändern
+    </button>
+    <button class="tertiary-button mx-2" mat-flat-button (click)="onDelete()">
+      Löschen
+    </button>
+  </div>
+</div>

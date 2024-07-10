@@ -14,13 +14,17 @@ $growdude-theme: mat.define-theme(
     color: (
       theme-type: light,
       primary: mat.$green-palette,
-      tertiary: mat.$blue-palette,
+      tertiary: mat.$red-palette,
     ),
     density: (
       scale: 0,
     ),
   )
 );
+
+.tertiary-button {
+  @include mat.button-color($growdude-theme, $color-variant: tertiary);
+}
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

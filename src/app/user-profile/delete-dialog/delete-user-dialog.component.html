@@ -1,0 +1,31 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title>Profil löschen</h2>
+  <p>
+    ACHTUNG! Du verlierst alle Deine Daten und wirst auf die Anmeldung
+    weitergeleitet. Dein Profil kann nicht wiederhergestellt werden.
+  </p>
+  <p>Um das Profil zu löschen, gib deine Email Adresse ein und bestätige:</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email Adresse</mat-label>
+    <input
+      matInput
+      cdkFocusInitial
+      placeholder="Bestätige deine Email"
+      #email
+    />
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+
+  <p>Möchtest du dein Profil wirklich löschen?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Nein</button>
+  <button
+    mat-button
+    (click)="onConfirm()"
+    [disabled]="email.value !== user()?.email"
+  >
+    Ja
+  </button>
+</mat-dialog-actions>

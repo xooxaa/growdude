@@ -41,7 +41,7 @@ export class UserRegisterComponent {
         return;
       }
 
-      const user = await this.authService.register(name, email, password);
+      await this.authService.registerNewUser(name, email, password);
       await this.router.navigate(['/dashboard']);
     } catch {
       console.error('Unable to register');

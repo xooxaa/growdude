@@ -9,11 +9,13 @@
           alt="Close Side Navigation"
           (click)="drawer.toggle()"
         />
-        <a class="home-link" routerLink="/dashboard">GROWDU.DE</a>
+        <a class="home-link" routerLink="/dashboard" (click)="drawer.toggle()">
+          GROWDU.DE
+        </a>
       </div>
 
       <div class="nav-items">
-        <a class="nav-item" routerLink="/stations">
+        <a class="nav-item" routerLink="/stations" (click)="drawer.toggle()">
           <img
             class="nav-item-icon"
             src="img/stations.png"
@@ -21,7 +23,7 @@
           />
           <p class="nav-link">Stationen</p>
         </a>
-        <a class="nav-item" routerLink="/sensors">
+        <a class="nav-item" routerLink="/sensors" (click)="drawer.toggle()">
           <img
             class="nav-item-icon"
             src="img/sensors.png"
@@ -32,11 +34,13 @@
       </div>
 
       <div class="nav-profile">
-        <a routerLink="/user" class="nav-user-logo">
+        <a class="nav-user-logo" routerLink="/user" (click)="drawer.toggle()">
           <img src="img/logo_round.webp" alt="" />
         </a>
         <div class="nav-user-links">
-          <a routerLink="/user"> <h3 class="nav-user-name">USERNAME</h3> </a>
+          <a routerLink="/user" (click)="drawer.toggle()">
+            <h3 class="nav-user-name">{{ user()?.name }}</h3>
+          </a>
           <p class="nav-signout" (click)="onLogout()">
             <mat-icon>logout</mat-icon>
             <span>Abmelden</span>
@@ -60,7 +64,9 @@
         <img class="nav-header-logo" src="img/logo.webp" alt="" />
       </a>
     </div>
-    <router-outlet />
+    <div class="home-container">
+      <router-outlet />
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
 } @else {

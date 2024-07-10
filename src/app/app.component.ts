@@ -23,10 +23,11 @@ export class AppComponent {
   authService = inject(AuthService);
   router = inject(Router);
   isLoggedIn = this.authService.isLoggedIn;
+  user = this.authService.user;
 
   async onLogout() {
     try {
-      await this.authService.logout();
+      await this.authService.logoutCurrentUser();
       await this.router.navigate(['/']);
     } catch {
       console.error('Unable to Logout');
