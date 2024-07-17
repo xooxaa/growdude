@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #261813;
+}
+
+.sensor-card {
+  background-color: #f8e9cc;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+}
+.sensor-card:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 5px #45322955;
+}
+
+.heading {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.sensor-name p:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.sensor-name p:last-child {
+  font-size: 0.9rem;
+}
+
+.sensor-count {
+  text-align: center;
+  width: fit-content;
+  flex-basis: 1;
+  white-space: nowrap;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.sensor-count span:last-child {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 200;
+  font-size: 1.75rem;
+  margin-top: 0.25rem;
+}

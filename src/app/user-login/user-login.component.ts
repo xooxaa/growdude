@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { SnackbarService } from '../services/snackbar.service';
 
 @Component({
   selector: 'app-user-login',
@@ -24,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class UserLoginComponent {
   authService = inject(AuthService);
+  snackbar = inject(SnackbarService);
   router = inject(Router);
   formBuilder = inject(FormBuilder);
 
@@ -50,6 +52,8 @@ export class UserLoginComponent {
 
       await this.authService.loginExistingUser(email, password);
       await this.router.navigate(['/dashboard']);
+
+      this.snackbar.openSnackBar('Willkommen zurück :)');
     } catch {
       console.error('Bad Credentials');
     }

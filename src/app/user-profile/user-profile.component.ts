@@ -1,18 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { openDeleteUserDialog } from './delete-dialog/delete-user-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { openChangePasswordDialog } from './change-password-dialog/change-password-dialog.component';
+import { AuthService } from '../services/auth.service';
 import { SnackbarService } from '../services/snackbar.service';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { openDeleteUserDialog } from './delete-dialog/delete-user-dialog.component';
+import { openChangePasswordDialog } from './change-password-dialog/change-password-dialog.component';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatButtonModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
 })

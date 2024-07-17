@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <a class="heading" routerLink="/stations">Stationen</a>
+  <button mat-flat-button routerLink="/stations/new">
+    <mat-icon>add</mat-icon>Station
+  </button>
+</div>
+
+@for (station of stations(); track station.id) {
+<div
+  class="station-card d-flex justify-content-between align-items-center"
+  [routerLink]="'/stations/' + station.id"
+>
+  <div class="station-name">
+    <p>{{ station.name }}</p>
+    <p>{{ truncate(station.description, 42) }}</p>
+  </div>
+
+  <div class="station-count">
+    <p>
+      {{ station.sensors.length }}
+    </p>
+    <p>
+      {{ station.sensors.length == 1 ? "Sensor" : "Sensoren" }}
+    </p>
+  </div>
+</div>
+}

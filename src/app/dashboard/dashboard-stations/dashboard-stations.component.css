@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  margin-bottom: 3rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #261813;
+}
+
+.station-card {
+  background-color: #f8e9cc;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+}
+.station-card:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 5px #45322955;
+}
+
+.heading {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.station-name p:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.station-name p:last-child {
+  font-size: 0.9rem;
+}
+
+.station-count {
+  text-align: center;
+}
+.station-count p:first-child {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: -0.75rem;
+}
+.station-count p:last-child {
+  margin-top: -1rem;
+  font-size: 0.75rem;
+}

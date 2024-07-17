@@ -1,0 +1,54 @@
+<h2>Neuen Sensor anlegen</h2>
+<p class="mb-5">
+  Hier kannst du einen neuen Sensor hinzufügen und diesen optional einer Station
+  zuweisen.
+</p>
+
+<form [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name des Sensors" formControlName="name" />
+    <mat-icon matSuffix>yard</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Beschreibung</mat-label>
+    <input
+      matInput
+      placeholder="Infos zum Sensor"
+      formControlName="description"
+    />
+    <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Sensorart</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="temperature">Temperatur (°C)</mat-option>
+      <mat-option value="humidity">Luftfeuchte (%RH)</mat-option>
+      <mat-option value="moisture">Bodenfeuchte (%)</mat-option>
+      <mat-option value="pressure">Luftdruck (hPa)</mat-option>
+      <mat-option value="weight">Gewicht (g)</mat-option>
+    </mat-select>
+    <mat-icon matSuffix>hive</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Station (optional)</mat-label>
+    <mat-select formControlName="stationId">
+      @if (form.controls.stationId.value) {
+      <mat-option [value]="null">-- keine Staion --</mat-option>
+      } @for (station of stations(); track station.id) {
+      <mat-option [value]="station.id">{{ station.name }}</mat-option>
+      }
+    </mat-select>
+    <mat-icon matSuffix>home_and_garden</mat-icon>
+  </mat-form-field>
+</form>
+
+<button mat-flat-button class="mt-4 mb-3" (click)="onCreateNewSensor()">
+  <mat-icon>add</mat-icon>Anlegen
+</button>
+<button mat-flat-button class="tertiary-button" routerLink="/dashboard">
+  <mat-icon>close</mat-icon>Abbrechen
+</button>

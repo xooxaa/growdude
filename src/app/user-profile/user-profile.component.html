@@ -1,6 +1,6 @@
 <div class="profile-card">
   <h1 class="mb-0">Profil von {{ user()?.name }}</h1>
-  <p class="user-id">User ID: {{ user()?.id }}</p>
+  <p class="user-id">UserId: {{ user()?.id }}</p>
 
   <p>Email: {{ user()?.email }}</p>
 
@@ -9,7 +9,7 @@
       Passwort ändern
     </button>
     <button class="tertiary-button mx-2" mat-flat-button (click)="onDelete()">
-      Löschen
+      Profil löschen
     </button>
   </div>
 </div>

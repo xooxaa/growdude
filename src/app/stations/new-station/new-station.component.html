@@ -1,0 +1,54 @@
+<h2>Neue Station anlegen</h2>
+<p class="mb-5">
+  Hier kannst du einen neue Station anlegen. Dieser Station kannst du Später
+  deine Sensoren zuordnen.
+</p>
+
+<form [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name der Station" formControlName="name" />
+    <mat-icon matSuffix>yard</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Beschreibung</mat-label>
+    <input
+      matInput
+      placeholder="Gemüsebeet, Fensterbank, ..."
+      formControlName="description"
+    />
+    <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Längengrad</mat-label>
+    <input
+      matInput
+      formControlName="latitude"
+      type="number"
+      min="-180"
+      max="180"
+    />
+    <mat-icon matSuffix>explore</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Breitengrad</mat-label>
+    <input
+      matInput
+      formControlName="longitude"
+      type="number"
+      min="-180"
+      max="180"
+    />
+    <mat-icon matSuffix>explore</mat-icon>
+  </mat-form-field>
+</form>
+
+<button mat-flat-button class="mt-4 mb-3" (click)="onCreateNewStation()">
+  <mat-icon>add</mat-icon>Anlegen
+</button>
+<button mat-flat-button class="tertiary-button" routerLink="/dashboard">
+  <mat-icon>close</mat-icon>Abbrechen
+</button>

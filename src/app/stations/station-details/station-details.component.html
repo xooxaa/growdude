@@ -1,0 +1,78 @@
+<form class="station-card" [formGroup]="form">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-0">Details zur Station</h1>
+    @if (editingDetails()) {
+    <button mat-icon-button (click)="onSaveDetails()">
+      <mat-icon class="mb-2">save</mat-icon>
+    </button>
+    } @else {
+    <button mat-icon-button (click)="editingDetails.set(true)">
+      <mat-icon class="mb-2">edit</mat-icon>
+    </button>
+    }
+  </div>
+  <p class="station-id">StationId: {{ station()?.id }}</p>
+
+  @if (editingDetails()) {
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      placeholder="Gemüsebeet, Fensterbank, ..."
+      formControlName="name"
+    />
+    <mat-icon matSuffix>yard</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Beschreibung</mat-label>
+    <textarea
+      matInput
+      placeholder="Gemüsebeet, Fensterbank, ..."
+      formControlName="description"
+    ></textarea>
+    <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Längengrad</mat-label>
+    <input
+      matInput
+      formControlName="longitude"
+      type="number"
+      min="-180"
+      max="180"
+    />
+    <mat-icon matSuffix>explore</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Breitengrad</mat-label>
+    <input
+      matInput
+      formControlName="latitude"
+      type="number"
+      min="-180"
+      max="180"
+    />
+    <mat-icon matSuffix>explore</mat-icon>
+  </mat-form-field>
+  } @else {
+  <div class="">
+    <p class="detail-heading m-0 p-0">Name:</p>
+    <p class="detail-text m-0 p-0 mb-3">{{ station()?.name }}</p>
+  </div>
+
+  <div class="">
+    <p class="detail-heading m-0 p-0">Beschreibung:</p>
+    <p class="detail-text m-0 p-0 mb-3">{{ station()?.description }}</p>
+  </div>
+
+  <div class="">
+    <p class="detail-heading m-0 p-0">Geokoordinaten:</p>
+    <p class="detail-text m-0 p-0 mb-1">
+      {{ station()?.latitude }}°N | {{ station()?.longitude }}°O
+    </p>
+  </div>
+  }
+</form>

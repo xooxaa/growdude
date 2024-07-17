@@ -73,8 +73,6 @@ export class AuthService {
     );
 
     const response = await firstValueFrom(logout$);
-    console.log(response);
-
     this.#userSignal.set(null);
   }
 
