@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SnackbarService } from '../../services/snackbar.service';
 import { StationsService } from '../../services/stations.service';
@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
+import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-station-details',
@@ -29,7 +30,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class StationDetailsComponent {
   stationsService = inject(StationsService);
   snackbar = inject(SnackbarService);
+  router = inject(Router);
   route = inject(ActivatedRoute);
+  dialog = inject(MatDialog);
 
   station = signal<Station | null>(null);
   sensors = signal<Sensor[]>([]);
@@ -52,17 +55,24 @@ export class StationDetailsComponent {
       next: async (value) => {
         const { stationId } = value;
 
-        this.station.set(await this.stationsService.getStationById(stationId));
-        this.sensors.set(
-          await this.stationsService.getSensorsByStationId(stationId)
-        );
+        try {
+          this.station.set(
+            await this.stationsService.getStationById(stationId)
+          );
+          this.sensors.set(
+            await this.stationsService.getSensorsByStationId(stationId)
+          );
 
-        this.form.patchValue({
-          name: this.station()?.name,
-          description: this.station()?.description,
-          latitude: this.station()?.latitude,
-          longitude: this.station()?.longitude,
-        });
+          this.form.patchValue({
+            name: this.station()?.name,
+            description: this.station()?.description,
+            latitude: this.station()?.latitude,
+            longitude: this.station()?.longitude,
+          });
+        } catch {
+          this.snackbar.openSnackBar('Station nicht gefunden');
+          this.router.navigate(['/dashboard']);
+        }
       },
     });
   }
@@ -108,5 +118,23 @@ export class StationDetailsComponent {
       }
     }
     this.editingDetails.set(false);
+  }
+
+  async onDeleteStation() {
+    const deleteStation = await openConfirmDialog(
+      this.dialog,
+      'Station löschen',
+      'Soll diese Station wirklich gelöscht werden?'
+    );
+
+    if (deleteStation) {
+      try {
+        await this.stationsService.deleteStation(this.station()!.id);
+        this.snackbar.openSnackBar('Station wurde gelöscht');
+        this.router.navigate(['/dashboard']);
+      } catch {
+        this.snackbar.openSnackBar('Station konnte nicht gelöscht werden');
+      }
+    }
   }
 }

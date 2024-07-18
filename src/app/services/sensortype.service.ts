@@ -40,4 +40,20 @@ export class SensortypeService {
 
     return sensorType?.unitLong || null;
   }
+
+  getGermanName(type: string): string | null {
+    const sensorType = this.sensorTypes().find(
+      (sensorType) => sensorType.type === type
+    );
+
+    return sensorType ? this.germanNameList[sensorType.type] : null;
+  }
+
+  private germanNameList: { [key: string]: string } = {
+    temperature: 'Temperatur',
+    humidity: 'Luftfeuchte',
+    moisture: 'Bodenfeuchte',
+    pressure: 'Luftdruck',
+    weight: 'Masse',
+  };
 }

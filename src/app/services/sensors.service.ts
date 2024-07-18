@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { SensorCreate } from '../models/sensor-create.model';
+import { SensorUpdate } from '../models/sensor-update.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,18 @@ export class SensorsService {
     const sensor$ = this.http.post<Sensor>(
       `http://localhost:3000/sensors`,
       sensorCreate
+    );
+
+    return await firstValueFrom(sensor$);
+  }
+
+  async updateSensor(
+    sensorId: string,
+    sensorUpdate: Partial<SensorUpdate>
+  ): Promise<Sensor> {
+    const sensor$ = this.http.patch<Sensor>(
+      `http://localhost:3000/sensors/${sensorId}`,
+      sensorUpdate
     );
 
     return await firstValueFrom(sensor$);

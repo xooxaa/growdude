@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SensorsService } from '../../services/sensors.service';
 import { SensordataService } from '../../services/sensordata.service';
@@ -14,6 +14,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { StationsService } from '../../services/stations.service';
 import { SensortypeService } from '../../services/sensortype.service';
+import { SnackbarService } from '../../services/snackbar.service';
+import { SensorUpdate } from '../../models/sensor-update.model';
+import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-sensor-details',
@@ -34,7 +37,10 @@ export class SensorDetailsComponent {
   sensorsService = inject(SensorsService);
   sensortypeService = inject(SensortypeService);
   sensordataService = inject(SensordataService);
+  router = inject(Router);
   route = inject(ActivatedRoute);
+  snackbar = inject(SnackbarService);
+  dialog = inject(MatDialog);
 
   sensor = signal<Sensor | null>(null);
   sensorTypes = this.sensortypeService.sensorTypes;
@@ -58,38 +64,90 @@ export class SensorDetailsComponent {
       next: async (value) => {
         const { sensorId } = value;
 
-        this.sensor.set(await this.sensorsService.getSensorById(sensorId));
-        this.stations.set(await this.stationsService.getStations());
+        try {
+          this.sensor.set(await this.sensorsService.getSensorById(sensorId));
+          this.stations.set(await this.stationsService.getStations());
 
-        this.form.patchValue({
-          name: this.sensor()?.name,
-          description: this.sensor()?.description,
-          type: this.sensor()?.type,
-          stationId: this.sensor()?.stationId,
-        });
+          this.form.patchValue({
+            name: this.sensor()?.name,
+            description: this.sensor()?.description,
+            type: this.sensor()?.type,
+            stationId: this.sensor()?.stationId,
+          });
+        } catch {
+          this.snackbar.openSnackBar('Sensor nicht gefunden');
+          this.router.navigate(['/dashboard']);
+        }
       },
     });
   }
 
-  async onSaveDetails() {}
+  async onSaveDetails() {
+    let updateSensorDto: Partial<SensorUpdate> = {};
+    const sensorId = this.sensor()!.id;
+
+    if (this.form.controls.name.value !== this.sensor()?.name) {
+      updateSensorDto = {
+        ...updateSensorDto,
+        name: this.form.controls.name.value!,
+      };
+    }
+
+    if (this.form.controls.description.value !== this.sensor()?.description) {
+      updateSensorDto = {
+        ...updateSensorDto,
+        description: this.form.controls.description.value!,
+      };
+    }
+
+    if (this.form.controls.type.value !== this.sensor()?.type) {
+      updateSensorDto = {
+        ...updateSensorDto,
+        type: this.form.controls.type.value!,
+      };
+    }
+
+    if (this.form.controls.stationId.value !== this.sensor()?.stationId) {
+      updateSensorDto = {
+        ...updateSensorDto,
+        stationId: this.form.controls.stationId.value!,
+      };
+    }
+
+    if (Object.keys(updateSensorDto).length > 0) {
+      try {
+        this.sensor.set(
+          await this.sensorsService.updateSensor(sensorId, updateSensorDto)
+        );
+      } catch {
+        this.snackbar.openSnackBar(
+          'Änderungen konnten nicht übernommen werden.'
+        );
+      }
+    }
+    this.editingDetails.set(false);
+  }
 
   getStationName(stationId: string) {
     const station = this.stations().find((station) => station.id === stationId);
     return station?.name;
   }
 
-  onDelete() {
-    this.route.params.subscribe({
-      next: async (value) => {
-        const { sensorId } = value;
-        try {
-          // await this.sensorsService.deleteSensor(sensorId);
-          // await this.router.navigate(['/dashboard']);
-          this.sensordataService.createFakeDataForSensor(sensorId);
-        } catch {
-          console.log(sensorId);
-        }
-      },
-    });
+  async onDeleteSensor() {
+    const deleteSensor = await openConfirmDialog(
+      this.dialog,
+      'Sensor löschen',
+      'Soll dieser Sensor wirklich gelöscht werden?'
+    );
+
+    if (deleteSensor) {
+      try {
+        await this.sensorsService.deleteSensor(this.sensor()!.id);
+        this.snackbar.openSnackBar('Sensor wurde gelöscht');
+        this.router.navigate(['/dashboard']);
+      } catch {
+        this.snackbar.openSnackBar('Sensor konnte nicht gelöscht werden');
+      }
+    }
   }
 }
