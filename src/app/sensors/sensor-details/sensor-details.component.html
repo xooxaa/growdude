@@ -1,5 +1,93 @@
-<p>sensor-details works!</p>
+<form class="sensor-card" [formGroup]="form">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="m-0 p-0">Details zum Sensor</h1>
+    @if (editingDetails()) {
+    <div class="m-0 p-0 d-flex justify-content-end">
+      <button style="color: #698440" mat-icon-button (click)="onSaveDetails()">
+        <mat-icon class="mb-2">save</mat-icon>
+      </button>
+    </div>
+    } @else {
+    <div class="m-0 p-0 d-flex justify-content-end">
+      <button mat-icon-button style="color: #da813b">
+        <mat-icon class="mb-2">delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="editingDetails.set(true)">
+        <mat-icon class="mb-2">edit</mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+  <p class="sensor-id">StationId: {{ sensor()?.id }}</p>
 
-<button mat-flat-button class="tertiary-button" (click)="onDelete()">
-  Sensor Löschen
-</button>
+  @if (editingDetails()) {
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      placeholder="Gemüsebeet, Fensterbank, ..."
+      formControlName="name"
+    />
+    <mat-icon matSuffix>yard</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Beschreibung</mat-label>
+    <textarea
+      matInput
+      placeholder="Gemüsebeet, Fensterbank, ..."
+      formControlName="description"
+    ></textarea>
+    <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Sensorart</mat-label>
+    <mat-select formControlName="type">
+      @for (sensorType of sensorTypes(); track $index) {
+      <mat-option [value]="sensorType.type">
+        {{ sensorType.type }} ({{ sensorType.unitShort }})
+      </mat-option>
+      }
+    </mat-select>
+    <mat-icon matSuffix>hive</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Station (optional)</mat-label>
+    <mat-select formControlName="stationId">
+      @if (form.controls.stationId.value) {
+      <mat-option [value]="null">-- keine Staion --</mat-option>
+      } @for (station of stations(); track station.id) {
+      <mat-option [value]="station.id">{{ station.name }}</mat-option>
+      }
+    </mat-select>
+    <mat-icon matSuffix>home_and_garden</mat-icon>
+  </mat-form-field>
+
+  } @else {
+  <div class="">
+    <p class="detail-heading m-0 p-0">Name:</p>
+    <p class="detail-text m-0 p-0 mb-3">{{ sensor()?.name }}</p>
+  </div>
+
+  <div class="">
+    <p class="detail-heading m-0 p-0">Beschreibung:</p>
+    <p class="detail-text m-0 p-0 mb-3">{{ sensor()?.description }}</p>
+  </div>
+
+  <div class="">
+    <p class="detail-heading m-0 p-0">Sensorart:</p>
+    <p class="detail-text m-0 p-0 mb-3">
+      {{ sensor()?.type }}
+    </p>
+  </div>
+
+  <div class="">
+    <p class="detail-heading m-0 p-0">Station:</p>
+    <p class="detail-text m-0 p-0 mb-3">
+      {{ sensor() ? getStationName(sensor()!.stationId) : "" }}
+    </p>
+  </div>
+  }
+</form>

@@ -24,11 +24,11 @@
   <mat-form-field appearance="fill">
     <mat-label>Sensorart</mat-label>
     <mat-select formControlName="type">
-      <mat-option value="temperature">Temperatur (°C)</mat-option>
-      <mat-option value="humidity">Luftfeuchte (%RH)</mat-option>
-      <mat-option value="moisture">Bodenfeuchte (%)</mat-option>
-      <mat-option value="pressure">Luftdruck (hPa)</mat-option>
-      <mat-option value="weight">Gewicht (g)</mat-option>
+      @for (sensorType of sensorTypes(); track $index) {
+      <mat-option [value]="sensorType.type">
+        {{ sensorType.type }} ({{ sensorType.unitShort }})
+      </mat-option>
+      }
     </mat-select>
     <mat-icon matSuffix>hive</mat-icon>
   </mat-form-field>

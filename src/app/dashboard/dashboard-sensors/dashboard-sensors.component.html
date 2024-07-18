@@ -1,7 +1,12 @@
 <div class="d-flex align-items-center mb-3">
   <a class="heading" routerLink="/sensors">Sensoren</a>
 
-  <button class="ms-2" mat-icon-button (click)="onRefresh()">
+  <button
+    class="ms-2"
+    style="color: #45322995"
+    mat-icon-button
+    (click)="onRefresh()"
+  >
     <mat-icon class="mb-2">refresh</mat-icon>
   </button>
   <button class="ms-auto" mat-flat-button routerLink="/sensors/new">
@@ -16,12 +21,14 @@
 >
   <div class="sensor-name">
     <p>{{ sensor.name }}</p>
-    <p>{{ truncate(sensor.description, 42) }}</p>
+    <p>{{ sensor.description | truncate : 42 }}</p>
   </div>
 
   <div class="sensor-count">
-    {{ sensor.latest ? sensor.latest.value : "-"
-    }}<span class="sensor-count-unit">{{ getShortUnit(sensor.unit) }}</span>
+    {{ sensor.latest ? sensor.latest.value : "⋅⋅⋅"
+    }}<span class="sensor-count-unit">
+      {{ sensor.latest ? sensortypeService.getShortUnit(sensor.type) : "" }}
+    </span>
   </div>
 </div>
 }

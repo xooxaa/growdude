@@ -1,8 +1,10 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { SnackbarService } from '../../services/snackbar.service';
 import { StationsService } from '../../services/stations.service';
 import { Station } from '../../models/station.model';
+import { StationUpdate } from '../../models/station-update.model';
 import { Sensor } from '../../models/sensor.model';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -10,8 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
-import { SnackbarService } from '../../services/snackbar.service';
-import { StationUpdate } from '../../models/station-update.model';
 
 @Component({
   selector: 'app-station-details',
@@ -33,11 +33,7 @@ export class StationDetailsComponent {
 
   station = signal<Station | null>(null);
   sensors = signal<Sensor[]>([]);
-
   editingDetails = signal(false);
-  editingName = signal(false);
-  editingDescription = signal(false);
-  editingGeo = signal(false);
 
   formBuilder = inject(FormBuilder);
   form = this.formBuilder.group({
@@ -49,11 +45,6 @@ export class StationDetailsComponent {
 
   constructor() {
     this.getStationAndSensors();
-
-    // effect(() => {
-    //   console.log('station: ', this.station());
-    //   console.log('sensors: ', this.sensors());
-    // });
   }
 
   async getStationAndSensors() {
@@ -117,48 +108,5 @@ export class StationDetailsComponent {
       }
     }
     this.editingDetails.set(false);
-  }
-
-  async onSaveDescription() {
-    if (this.form.controls.description.value !== this.station()?.description) {
-      const stationId = this.station()!.id;
-      const updateStationDto = {
-        description: this.form.controls.description.value!,
-      };
-      try {
-        this.station.set(
-          await this.stationsService.updateStation(stationId, updateStationDto)
-        );
-      } catch {
-        this.snackbar.openSnackBar(
-          'Änderungen konnten nicht übernommen werden.'
-        );
-      }
-    }
-    this.editingDescription.set(false);
-  }
-
-  async onSaveGeo() {
-    if (
-      this.form.controls.latitude.value !== this.station()?.latitude ||
-      this.form.controls.longitude.value !== this.station()?.longitude
-    ) {
-      const stationId = this.station()!.id;
-      const updateStationDto = {
-        latitude: this.form.controls.latitude.value!,
-        longitude: this.form.controls.longitude.value!,
-      };
-
-      try {
-        this.station.set(
-          await this.stationsService.updateStation(stationId, updateStationDto)
-        );
-      } catch {
-        this.snackbar.openSnackBar(
-          'Änderungen konnten nicht übernommen werden.'
-        );
-      }
-    }
-    this.editingGeo.set(false);
   }
 }

@@ -12,7 +12,7 @@
 >
   <div class="station-name">
     <p>{{ station.name }}</p>
-    <p>{{ truncate(station.description, 42) }}</p>
+    <p>{{ station.description | truncate : 42 }}</p>
   </div>
 
   <div class="station-count">

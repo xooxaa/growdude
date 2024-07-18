@@ -1,0 +1,24 @@
+mat-form-field {
+  width: 100%;
+}
+
+.sensor-card {
+  background-color: #f8e9cc;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.sensor-id {
+  font-size: 0.75rem;
+  font-weight: 200;
+  color: #634838;
+}
+
+.detail-heading {
+  font-size: 1rem;
+  font-weight: 200;
+}
+.detail-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+}

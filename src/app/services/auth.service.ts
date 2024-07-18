@@ -11,8 +11,8 @@ const USER_STORAGE_KEY = 'user';
 export class AuthService {
   http = inject(HttpClient);
 
-  #userSignal = signal<User | null>(null);
-  user = this.#userSignal.asReadonly();
+  #user = signal<User | null>(null);
+  user = this.#user.asReadonly();
   isLoggedIn = computed(() => {
     return this.user() ? true : false;
   });
@@ -33,7 +33,7 @@ export class AuthService {
   loadUserFromStorage() {
     const userToken = localStorage.getItem(USER_STORAGE_KEY);
     if (userToken) {
-      this.#userSignal.set(JSON.parse(userToken));
+      this.#user.set(JSON.parse(userToken));
     }
   }
 
@@ -49,7 +49,7 @@ export class AuthService {
     });
 
     const user = await firstValueFrom(register$);
-    this.#userSignal.set(user);
+    this.#user.set(user);
 
     return user;
   }
@@ -61,7 +61,7 @@ export class AuthService {
     });
 
     const user = await firstValueFrom(login$);
-    this.#userSignal.set(user);
+    this.#user.set(user);
 
     return user;
   }
@@ -73,11 +73,11 @@ export class AuthService {
     );
 
     const response = await firstValueFrom(logout$);
-    this.#userSignal.set(null);
+    this.#user.set(null);
   }
 
   async changePassword(newPassword: string) {
-    const userId = this.#userSignal()?.id;
+    const userId = this.#user()?.id;
     const updateUserDto = {
       password: newPassword,
     };
@@ -93,13 +93,13 @@ export class AuthService {
   }
 
   async deleteUser() {
-    const userId = this.#userSignal()?.id;
+    const userId = this.#user()?.id;
     const remove$ = this.http.delete<User>(
       `http://localhost:3000/auth/${userId}`
     );
 
     const response = await firstValueFrom(remove$);
 
-    this.#userSignal.set(null);
+    this.#user.set(null);
   }
 }

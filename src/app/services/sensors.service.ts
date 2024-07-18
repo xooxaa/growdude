@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Sensor } from '../models/sensor.model';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -16,13 +16,20 @@ export class SensorsService {
 
   async getSensors(): Promise<Sensor[]> {
     const sensor$ = this.http.get<Sensor[]>(`http://localhost:3000/sensors`);
-
     const allSensors = await firstValueFrom(sensor$);
     const userSensors = allSensors.filter(
       (sensor) => sensor.userId === this.user()?.id
     );
 
     return userSensors;
+  }
+
+  async getSensorById(sensorId: string): Promise<Sensor> {
+    const sensor$ = this.http.get<Sensor>(
+      `http://localhost:3000/sensors/${sensorId}`
+    );
+
+    return await firstValueFrom(sensor$);
   }
 
   async createNewSensor(sensorCreate: SensorCreate): Promise<Sensor> {
@@ -41,21 +48,4 @@ export class SensorsService {
 
     return await firstValueFrom(sensor$);
   }
-
-  getShortUnit(unitName: string) {
-    return this.unitMap[unitName] || unitName;
-  }
-
-  private unitMap: { [key: string]: string } = {
-    Celsius: '°C',
-    Percentage: '%',
-    PercentageRH: '%RH',
-    Gram: 'g',
-    Meter: 'm',
-    Kilogram: 'kg',
-    Second: 's',
-    Minute: 'min',
-    Hour: 'h',
-    Pascal: 'Pa',
-  };
 }

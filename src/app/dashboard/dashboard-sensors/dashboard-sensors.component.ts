@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SensorsService } from '../../services/sensors.service';
 import { SensordataService } from '../../services/sensordata.service';
@@ -6,16 +6,20 @@ import { Sensor } from '../../models/sensor.model';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SensortypeService } from '../../services/sensortype.service';
+
+import { TruncatePipe } from '../../utils/truncate.pipe';
 
 @Component({
   selector: 'app-dashboard-sensors',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatButtonModule, MatIconModule, TruncatePipe],
   templateUrl: './dashboard-sensors.component.html',
   styleUrl: './dashboard-sensors.component.css',
 })
 export class DashboardSensorsComponent {
   sensorsService = inject(SensorsService);
+  sensortypeService = inject(SensortypeService);
   sensordataService = inject(SensordataService);
 
   sensors = signal<Sensor[]>([]);
@@ -47,20 +51,7 @@ export class DashboardSensorsComponent {
     this.getSensors();
   }
 
-  async deleteSensor(sensorId: string) {
-    const deletedStation = await this.sensorsService.deleteSensor(sensorId);
-    this.getSensors();
-  }
-
   truncate(text: string, limit: number) {
-    if (text.length > limit) {
-      return text.substr(0, limit) + '...';
-    }
-    return text;
-  }
-
-  getShortUnit(unit: string) {
-    const unitShortName = this.sensorsService.getShortUnit(unit);
-    return unitShortName;
+    return text.length > limit ? `${text.slice(0, limit)}...` : text;
   }
 }

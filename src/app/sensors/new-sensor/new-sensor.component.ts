@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { SensortypeService } from '../../services/sensortype.service';
 
 @Component({
   selector: 'app-new-sensor',
@@ -30,11 +31,13 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class NewSensorComponent {
   sensorsService = inject(SensorsService);
+  sensortypeService = inject(SensortypeService);
   stationsService = inject(StationsService);
   snackbar = inject(SnackbarService);
   router = inject(Router);
 
   stations = signal<Station[]>([]);
+  sensorTypes = this.sensortypeService.sensorTypes;
 
   formBuilder = inject(FormBuilder);
   form = this.formBuilder.group({

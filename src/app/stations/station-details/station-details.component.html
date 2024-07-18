@@ -1,14 +1,21 @@
 <form class="station-card" [formGroup]="form">
   <div class="d-flex justify-content-between align-items-center">
-    <h1 class="mb-0">Details zur Station</h1>
+    <h1 class="m-0 p-0">Details zur Station</h1>
     @if (editingDetails()) {
-    <button mat-icon-button (click)="onSaveDetails()">
-      <mat-icon class="mb-2">save</mat-icon>
-    </button>
+    <div class="m-0 p-0 d-flex justify-content-end">
+      <button style="color: #698440" mat-icon-button (click)="onSaveDetails()">
+        <mat-icon class="mb-2">save</mat-icon>
+      </button>
+    </div>
     } @else {
-    <button mat-icon-button (click)="editingDetails.set(true)">
-      <mat-icon class="mb-2">edit</mat-icon>
-    </button>
+    <div class="m-0 p-0 d-flex justify-content-end">
+      <button mat-icon-button style="color: #da813b">
+        <mat-icon class="mb-2">delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="editingDetails.set(true)">
+        <mat-icon class="mb-2">edit</mat-icon>
+      </button>
+    </div>
     }
   </div>
   <p class="station-id">StationId: {{ station()?.id }}</p>

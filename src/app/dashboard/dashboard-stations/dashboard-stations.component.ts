@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { StationsService } from '../../services/stations.service';
 import { Station } from '../../models/station.model';
 
+import { TruncatePipe } from '../../utils/truncate.pipe';
+
 @Component({
   selector: 'app-dashboard-stations',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatButtonModule, MatIconModule, TruncatePipe],
   templateUrl: './dashboard-stations.component.html',
   styleUrl: './dashboard-stations.component.css',
 })
@@ -33,9 +35,6 @@ export class DashboardStationsComponent {
   }
 
   truncate(text: string, limit: number) {
-    if (text.length > limit) {
-      return text.substr(0, limit) + '...';
-    }
-    return text;
+    return text.length > limit ? `${text.slice(0, limit)}...` : text;
   }
 }
