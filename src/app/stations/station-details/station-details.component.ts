@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
+import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.component';
+import { SensordataService } from '../../services/sensordata.service';
 
 @Component({
   selector: 'app-station-details',
@@ -23,12 +25,14 @@ import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.com
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    SensorCardComponent,
   ],
   templateUrl: './station-details.component.html',
   styleUrl: './station-details.component.css',
 })
 export class StationDetailsComponent {
   stationsService = inject(StationsService);
+  sensordataService = inject(SensordataService);
   snackbar = inject(SnackbarService);
   router = inject(Router);
   route = inject(ActivatedRoute);
@@ -59,9 +63,23 @@ export class StationDetailsComponent {
           this.station.set(
             await this.stationsService.getStationById(stationId)
           );
-          this.sensors.set(
-            await this.stationsService.getSensorsByStationId(stationId)
+          let userSensors = await this.stationsService.getSensorsByStationId(
+            stationId
           );
+          for (let sensor of userSensors) {
+            const sensorData = await this.sensordataService.getLatestSensorData(
+              sensor.id
+            );
+
+            if (sensorData) {
+              userSensors = userSensors.map((mapSensor) =>
+                mapSensor.id === sensor.id
+                  ? { ...mapSensor, latest: sensorData }
+                  : mapSensor
+              );
+            }
+          }
+          this.sensors.set(userSensors);
 
           this.form.patchValue({
             name: this.station()?.name,

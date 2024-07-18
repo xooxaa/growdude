@@ -54,7 +54,8 @@
     <mat-select formControlName="type">
       @for (sensorType of sensorTypes(); track $index) {
       <mat-option [value]="sensorType.type">
-        {{ sensorType.type }} ({{ sensorType.unitShort }})
+        {{ sensortypeService.getGermanName(sensorType.type) }}
+        ({{ sensorType.unitShort }})
       </mat-option>
       }
     </mat-select>

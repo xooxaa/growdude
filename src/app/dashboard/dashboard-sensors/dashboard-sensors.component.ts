@@ -9,11 +9,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { SensortypeService } from '../../services/sensortype.service';
 
 import { TruncatePipe } from '../../utils/truncate.pipe';
+import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.component';
 
 @Component({
   selector: 'app-dashboard-sensors',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatIconModule, TruncatePipe],
+  imports: [
+    RouterLink,
+    MatButtonModule,
+    MatIconModule,
+    TruncatePipe,
+    SensorCardComponent,
+  ],
   templateUrl: './dashboard-sensors.component.html',
   styleUrl: './dashboard-sensors.component.css',
 })

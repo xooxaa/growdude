@@ -27,7 +27,7 @@
 </div>
 <p class="station-id mb-3">StationId: {{ station()?.id }}</p>
 
-<form class="station-card" [formGroup]="form">
+<form class="station-card mb-4" [formGroup]="form">
   @if (editingDetails()) {
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
@@ -91,4 +91,10 @@
   </div>
   }
 </form>
-}
+
+<h1 class="m-0 p-0 mb-2">Sensoren in dieser Station</h1>
+@if (sensors().length === 0) {
+<p>Bisher wurden dieser Station noch keinen Sensoren zugewiesen</p>
+} @for (sensor of sensors(); track sensor.id) {
+<app-sensor-card [sensor]="sensor" />
+} }
