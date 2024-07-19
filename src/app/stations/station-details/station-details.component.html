@@ -3,20 +3,16 @@
   <h1 class="m-0 p-0">Details zur Station</h1>
   @if (editingDetails()) {
   <div class="m-0 p-0 d-flex justify-content-end">
-    <button
-      mat-icon-button
-      style="color: #da813b"
-      (click)="editingDetails.set(false)"
-    >
+    <button mat-icon-button (click)="editingDetails.set(false)">
       <mat-icon class="mb-2">cancel</mat-icon>
     </button>
-    <button mat-icon-button style="color: #698440" (click)="onSaveDetails()">
+    <button mat-icon-button (click)="onSaveDetails()">
       <mat-icon class="mb-2">save</mat-icon>
     </button>
   </div>
   } @else {
   <div class="m-0 p-0 d-flex justify-content-end">
-    <button mat-icon-button style="color: #da813b" (click)="onDeleteStation()">
+    <button mat-icon-button (click)="onDeleteStation()">
       <mat-icon class="mb-2">delete</mat-icon>
     </button>
     <button mat-icon-button (click)="editingDetails.set(true)">
@@ -92,7 +88,7 @@
   }
 </form>
 
-<h1 class="m-0 p-0 mb-2">Sensoren in dieser Station</h1>
+<h2 class="m-0 p-0 mb-2">Sensoren in dieser Station</h2>
 @if (sensors().length === 0) {
 <p>Bisher wurden dieser Station noch keinen Sensoren zugewiesen</p>
 } @for (sensor of sensors(); track sensor.id) {

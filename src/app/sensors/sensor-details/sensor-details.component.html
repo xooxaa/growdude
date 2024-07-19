@@ -3,20 +3,16 @@
   <h1 class="m-0 p-0">Details zum Sensor</h1>
   @if (editingDetails()) {
   <div class="m-0 p-0 d-flex justify-content-end">
-    <button
-      mat-icon-button
-      style="color: #da813b"
-      (click)="editingDetails.set(false)"
-    >
+    <button mat-icon-button (click)="editingDetails.set(false)">
       <mat-icon class="mb-2">cancel</mat-icon>
     </button>
-    <button mat-icon-button style="color: #698440" (click)="onSaveDetails()">
+    <button mat-icon-button (click)="onSaveDetails()">
       <mat-icon class="mb-2">save</mat-icon>
     </button>
   </div>
   } @else {
   <div class="m-0 p-0 d-flex justify-content-end">
-    <button mat-icon-button style="color: #da813b" (click)="onDeleteSensor()">
+    <button mat-icon-button (click)="onDeleteSensor()">
       <mat-icon class="mb-2">delete</mat-icon>
     </button>
     <button mat-icon-button (click)="editingDetails.set(true)">
@@ -27,7 +23,7 @@
 </div>
 <p class="sensor-id mb-3">StationId: {{ sensor()?.id }}</p>
 
-<form class="sensor-card" [formGroup]="form">
+<form class="sensor-card mb-3" [formGroup]="form">
   @if (editingDetails()) {
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
@@ -94,10 +90,53 @@
 
   <div class="">
     <p class="detail-heading m-0 p-0">Station:</p>
-    <p class="detail-text m-0 p-0 mb-3">
+    <p class="detail-text m-0 p-0 mb-1">
       {{ sensor() ? getStationName(sensor()!.stationId) : "" }}
     </p>
   </div>
   }
 </form>
-}
+} @if (sensorData().length > 0) {
+<div class="d-flex justify-content-between align-items-center my-2">
+  <h2 class="m-0 p-0">Messwerte dieses Sensors</h2>
+  <button mat-icon-button (click)="onAddSensorData()">
+    <mat-icon class="mb-2">add</mat-icon>
+  </button>
+</div>
+@for (data of sensorData(); track data.id) {
+<app-color-background
+  [value]="data.value"
+  [minValue]="minReading()"
+  [maxValue]="maxReading()"
+  (click)="onEditSensorData(data)"
+  class="sensordata-card"
+>
+  <div class="d-flex justify-content-between align-items-center ps-2 pe-3 py-2">
+    <div
+      class="d-flex align-items-center pe-1"
+      style="border-right: 1px solid #43483f"
+    >
+      <button
+        mat-icon-button
+        (click)="onDeleteSensorData(data); $event.stopPropagation()"
+      >
+        <mat-icon class="mb-2">delete</mat-icon>
+      </button>
+    </div>
+    <div
+      class="d-flex justify-content-between align-items-center"
+      style="width: 100%"
+    >
+      <div class="ms-3">
+        {{ data.timestamp | date : "dd.MM.YYYY - hh:mm:ss" }}
+      </div>
+      <div class="sensordata-value">
+        {{ data.value
+        }}<span class="sensordata-unit"
+          >{{ sensortypeService.getShortUnit(sensor()!.type) }}
+        </span>
+      </div>
+    </div>
+  </div>
+</app-color-background>
+} }

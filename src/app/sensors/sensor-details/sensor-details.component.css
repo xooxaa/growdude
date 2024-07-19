@@ -22,3 +22,20 @@ mat-form-field {
   font-size: 1.25rem;
   font-weight: 500;
 }
+
+.sensordata-card:hover {
+  cursor: pointer;
+}
+
+.sensordata-value {
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.sensordata-unit {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 300;
+  font-size: 1rem;
+  margin-top: 0.175rem;
+}

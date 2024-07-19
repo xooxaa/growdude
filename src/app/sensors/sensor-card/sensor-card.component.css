@@ -39,7 +39,7 @@
   font-weight: 700;
 }
 
-.sensor-count span:last-child {
+.sensor-count-unit {
   display: inline-block;
   vertical-align: top;
   font-weight: 300;

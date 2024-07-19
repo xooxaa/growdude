@@ -17,13 +17,20 @@ export class SensordataService {
     return await firstValueFrom(sensorData$);
   }
 
-  async createFakeDataForSensor(sensorId: string): Promise<SensorData> {
-    const sensorData$ = this.http.post<SensorData>(
-      `http://localhost:3000/sensors/${sensorId}/data`,
-      {
-        value: 23,
-        timestamp: new Date(),
-      }
+  async getAllSensorData(sensorId: string): Promise<SensorData[]> {
+    const sensorData$ = this.http.get<SensorData[]>(
+      `http://localhost:3000/sensors/${sensorId}/data`
+    );
+
+    return await firstValueFrom(sensorData$);
+  }
+
+  async delteSensorData(
+    sensorId: string,
+    sensordataId: string
+  ): Promise<SensorData> {
+    const sensorData$ = this.http.delete<SensorData>(
+      `http://localhost:3000/sensors/${sensorId}/data/${sensordataId}`
     );
 
     return await firstValueFrom(sensorData$);
