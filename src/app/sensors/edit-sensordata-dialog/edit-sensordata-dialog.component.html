@@ -1,0 +1,54 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title>Datensatz Bearbeiten</h2>
+  <p>Nimm Änderungen am gewählten Datensatz vor.</p>
+
+  <div [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Messwert</mat-label>
+      <input matInput cdkFocusInitial type="number" formControlName="value" />
+      <mat-icon matSuffix>pin</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Messwert (roh)</mat-label>
+      <input matInput type="number" formControlName="rawValue" />
+      <mat-icon matSuffix>123</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Datum der Messung</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="d-flex">
+      <mat-form-field appearance="fill" class="me-1">
+        <mat-label>Stunden</mat-label>
+        <mat-select formControlName="hours">
+          @for (hour of hours; track $index) {
+          <mat-option [value]="hour"> {{ hour }} </mat-option>
+          }
+        </mat-select>
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="ms-1">
+        <mat-label>Minuten</mat-label>
+        <mat-select formControlName="minutes">
+          @for (minute of minutes; track $index) {
+          <mat-option [value]="minute"> {{ minute }} </mat-option>
+          }
+        </mat-select>
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Abbrechen</button>
+  <button mat-button (click)="onConfirm()">Speichern</button>
+</mat-dialog-actions>

@@ -49,7 +49,7 @@ mat-drawer {
   align-items: flex-start;
   gap: 1rem;
 
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1rem;
 }
 
 .nav-header-icon {
@@ -60,7 +60,7 @@ mat-drawer {
 }
 
 .nav-header-logo {
-  width: 100px;
+  width: 80px;
   margin-left: auto;
 }
 
@@ -118,6 +118,7 @@ mat-drawer {
 
 .nav-user-name {
   font-weight: 600;
+  margin-top: 0.5rem;
 }
 
 .nav-signout {
@@ -129,5 +130,5 @@ mat-drawer {
 }
 
 .home-container {
-  padding: 1.5rem;
+  padding: 0.5rem 1.5rem 2rem 1.5rem;
 }

@@ -96,14 +96,20 @@
   </div>
   }
 </form>
-} @if (sensorData().length > 0) {
-<div class="d-flex justify-content-between align-items-center my-2">
-  <h2 class="m-0 p-0">Messwerte dieses Sensors</h2>
+} @if (sensor()) {
+
+<div class="d-flex justify-content-between align-items-center mt-3 mb-2">
+  <div class="d-flex align-items-center m-0 p-0">
+    <h2 class="m-0 p-0 me-2">Messwerte</h2>
+    <button mat-icon-button (click)="onRefresh()">
+      <mat-icon class="mb-2">refresh</mat-icon>
+    </button>
+  </div>
   <button mat-icon-button (click)="onAddSensorData()">
     <mat-icon class="mb-2">add</mat-icon>
   </button>
 </div>
-@for (data of sensorData(); track data.id) {
+@if (sensorData().length > 0) { @for (data of sensorData(); track data.id) {
 <app-color-background
   [value]="data.value"
   [minValue]="minReading()"
@@ -128,7 +134,7 @@
       style="width: 100%"
     >
       <div class="ms-3">
-        {{ data.timestamp | date : "dd.MM.YYYY - hh:mm:ss" }}
+        {{ data.timestamp | date : "dd.MM.YYYY - HH:mm:ss" }}
       </div>
       <div class="sensordata-value">
         {{ data.value
@@ -139,4 +145,9 @@
     </div>
   </div>
 </app-color-background>
+} } @else {
+<p>
+  Für diesen Sensor wurden noch keine Messwerte erfasst. Du kannst jetzt mit
+  einem Klick auf das + den ersten Datensatz eingeben.
+</p>
 } }

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SensorsService } from '../../services/sensors.service';
@@ -21,6 +21,8 @@ import { SensorUpdate } from '../../models/sensor-update.model';
 import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 import { SensorData } from '../../models/sensordata.model';
 import { ColorBackgroundComponent } from '../../utils/color-background/color-background.component';
+import { openAddSensordataDialog } from '../add-sensordata-dialog/add-sensordata-dialog.component';
+import { openEditSensordataDialog } from '../edit-sensordata-dialog/edit-sensordata-dialog.component';
 
 @Component({
   selector: 'app-sensor-details',
@@ -66,6 +68,11 @@ export class SensorDetailsComponent {
 
   constructor() {
     this.getSensorAndStationsAndData();
+
+    effect(() => {
+      console.log(this.minReading());
+      console.log(this.maxReading());
+    });
   }
 
   async getSensorAndStationsAndData() {
@@ -184,10 +191,44 @@ export class SensorDetailsComponent {
     }
   }
 
-  async onAddSensorData() {}
+  async onRefresh() {
+    this.getSensordata(this.sensor()!.id);
+  }
 
-  onEditSensorData(data: SensorData) {
-    console.log(data);
+  async onAddSensorData() {
+    const newSensorData = await openAddSensordataDialog(this.dialog);
+    if (newSensorData) {
+      try {
+        await this.sensordataService.createSensorData(
+          this.sensor()!.id,
+          newSensorData
+        );
+        this.snackbar.openSnackBar('Datensatz wurde angelegt');
+        this.getSensordata(this.sensor()!.id);
+      } catch {
+        this.snackbar.openSnackBar(
+          'Datensatz konnte nicht angelegt werden. Bitte versuche es erneut.'
+        );
+      }
+    }
+  }
+
+  async onEditSensorData(data: SensorData) {
+    const newSensorData = await openEditSensordataDialog(this.dialog, data);
+    if (newSensorData) {
+      try {
+        await this.sensordataService.updateSensorData(this.sensor()!.id, {
+          ...newSensorData,
+          id: data.id,
+        });
+        this.snackbar.openSnackBar('Datensatz wurde bearbeitet');
+        this.getSensordata(this.sensor()!.id);
+      } catch {
+        this.snackbar.openSnackBar(
+          'Datensatz konnte nicht bearbeitet werden. Bitte versuche es erneut.'
+        );
+      }
+    }
   }
 
   async onDeleteSensorData(data: SensorData) {

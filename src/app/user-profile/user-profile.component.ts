@@ -5,7 +5,7 @@ import { SnackbarService } from '../services/snackbar.service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { openDeleteUserDialog } from './delete-dialog/delete-user-dialog.component';
+import { openDeleteUserDialog } from './delete-user-dialog/delete-user-dialog.component';
 import { openChangePasswordDialog } from './change-password-dialog/change-password-dialog.component';
 
 @Component({

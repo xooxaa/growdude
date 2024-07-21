@@ -33,6 +33,10 @@ export class ColorBackgroundComponent {
     minColor: string,
     maxColor: string
   ): string {
+    if (minValue === maxValue) {
+      return minColor;
+    }
+
     const percent = (value - minValue) / (maxValue - minValue);
     const startColor = this.hexToRgb(minColor);
     const endColor = this.hexToRgb(maxColor);
