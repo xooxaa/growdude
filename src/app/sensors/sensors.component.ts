@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { DashboardSensorsComponent } from '../dashboard/dashboard-sensors/dashboard-sensors.component';
 
 @Component({

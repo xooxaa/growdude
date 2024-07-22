@@ -1,13 +1,13 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { SensorsService } from '../../services/sensors.service';
-import { SensordataService } from '../../services/sensordata.service';
-import { Sensor } from '../../models/sensor.model';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SensortypeService } from '../../services/sensortype.service';
 
+import { SensorsService } from '../../services/sensors.service';
+import { SensordataService } from '../../services/sensordata.service';
+import { SensortypeService } from '../../services/sensortype.service';
+import { Sensor } from '../../models/sensor.model';
 import { TruncatePipe } from '../../utils/truncate.pipe';
 import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.component';
 

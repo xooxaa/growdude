@@ -1,8 +1,8 @@
 import { Component, inject, input } from '@angular/core';
-
 import { RouterLink } from '@angular/router';
-import { Sensor } from '../../models/sensor.model';
+
 import { SensortypeService } from '../../services/sensortype.service';
+import { Sensor } from '../../models/sensor.model';
 import { TruncatePipe } from '../../utils/truncate.pipe';
 
 @Component({

@@ -1,18 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { SnackbarService } from '../../services/snackbar.service';
-import { SensorsService } from '../../services/sensors.service';
-import { SensorCreate } from '../../models/sensor-create.model';
-import { StationsService } from '../../services/stations.service';
-import { Station } from '../../models/station.model';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+
+import { SnackbarService } from '../../services/snackbar.service';
+import { StationsService } from '../../services/stations.service';
+import { SensorsService } from '../../services/sensors.service';
 import { SensortypeService } from '../../services/sensortype.service';
+import { SensorCreate } from '../../models/sensor-create.model';
+import { Station } from '../../models/station.model';
 
 @Component({
   selector: 'app-new-sensor',

@@ -1,11 +1,6 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { SensorsService } from '../../services/sensors.service';
-import { SensordataService } from '../../services/sensordata.service';
-import { Sensor } from '../../models/sensor.model';
-import { Station } from '../../models/station.model';
-
 import { DatePipe } from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -14,15 +9,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
-import { StationsService } from '../../services/stations.service';
-import { SensortypeService } from '../../services/sensortype.service';
+
 import { SnackbarService } from '../../services/snackbar.service';
+import { StationsService } from '../../services/stations.service';
+import { SensorsService } from '../../services/sensors.service';
+import { SensordataService } from '../../services/sensordata.service';
+import { SensortypeService } from '../../services/sensortype.service';
+import { Sensor } from '../../models/sensor.model';
+import { Station } from '../../models/station.model';
 import { SensorUpdate } from '../../models/sensor-update.model';
-import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 import { SensorData } from '../../models/sensordata.model';
-import { ColorBackgroundComponent } from '../../utils/color-background/color-background.component';
+import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 import { openAddSensordataDialog } from '../add-sensordata-dialog/add-sensordata-dialog.component';
 import { openEditSensordataDialog } from '../edit-sensordata-dialog/edit-sensordata-dialog.component';
+import { ColorBackgroundComponent } from '../../utils/color-background/color-background.component';
 
 @Component({
   selector: 'app-sensor-details',
@@ -68,11 +68,6 @@ export class SensorDetailsComponent {
 
   constructor() {
     this.getSensorAndStationsAndData();
-
-    effect(() => {
-      console.log(this.minReading());
-      console.log(this.maxReading());
-    });
   }
 
   async getSensorAndStationsAndData() {

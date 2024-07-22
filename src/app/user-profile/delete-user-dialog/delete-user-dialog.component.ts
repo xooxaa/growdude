@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {
   MatDialog,
   MatDialogConfig,
@@ -8,10 +13,7 @@ import {
   MatDialogClose,
   MatDialogContent,
 } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { firstValueFrom } from 'rxjs';
+
 import { AuthService } from '../../services/auth.service';
 
 @Component({

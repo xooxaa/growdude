@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { SnackbarService } from '../services/snackbar.service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+
+import { AuthService } from '../services/auth.service';
+import { SnackbarService } from '../services/snackbar.service';
 import { openDeleteUserDialog } from './delete-user-dialog/delete-user-dialog.component';
 import { openChangePasswordDialog } from './change-password-dialog/change-password-dialog.component';
 

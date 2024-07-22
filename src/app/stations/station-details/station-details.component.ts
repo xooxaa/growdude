@@ -1,20 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { SnackbarService } from '../../services/snackbar.service';
-import { StationsService } from '../../services/stations.service';
-import { Station } from '../../models/station.model';
-import { StationUpdate } from '../../models/station-update.model';
-import { Sensor } from '../../models/sensor.model';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
-import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
-import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.component';
+
+import { SnackbarService } from '../../services/snackbar.service';
+import { StationsService } from '../../services/stations.service';
 import { SensordataService } from '../../services/sensordata.service';
+import { Station } from '../../models/station.model';
+import { StationUpdate } from '../../models/station-update.model';
+import { Sensor } from '../../models/sensor.model';
+import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.component';
+import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-station-details',

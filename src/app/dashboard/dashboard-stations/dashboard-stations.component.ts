@@ -3,9 +3,9 @@ import { RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
 import { StationsService } from '../../services/stations.service';
 import { Station } from '../../models/station.model';
-
 import { TruncatePipe } from '../../utils/truncate.pipe';
 
 @Component({
