@@ -6,17 +6,21 @@ import { firstValueFrom } from 'rxjs';
 import { SensorCreate } from '../models/sensor-create.model';
 import { SensorUpdate } from '../models/sensor-update.model';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class SensorsService {
+  apiURL = environment.apiURL;
+
   authService = inject(AuthService);
   http = inject(HttpClient);
 
   user = this.authService.user;
 
   async getSensors(): Promise<Sensor[]> {
-    const sensor$ = this.http.get<Sensor[]>(`http://localhost:3000/sensors`);
+    const sensor$ = this.http.get<Sensor[]>(`${this.apiURL}/sensors`);
     const allSensors = await firstValueFrom(sensor$);
     const userSensors = allSensors.filter(
       (sensor) => sensor.userId === this.user()?.id
@@ -26,16 +30,14 @@ export class SensorsService {
   }
 
   async getSensorById(sensorId: string): Promise<Sensor> {
-    const sensor$ = this.http.get<Sensor>(
-      `http://localhost:3000/sensors/${sensorId}`
-    );
+    const sensor$ = this.http.get<Sensor>(`${this.apiURL}/sensors/${sensorId}`);
 
     return await firstValueFrom(sensor$);
   }
 
   async createNewSensor(sensorCreate: SensorCreate): Promise<Sensor> {
     const sensor$ = this.http.post<Sensor>(
-      `http://localhost:3000/sensors`,
+      `${this.apiURL}/sensors`,
       sensorCreate
     );
 
@@ -47,7 +49,7 @@ export class SensorsService {
     sensorUpdate: Partial<SensorUpdate>
   ): Promise<Sensor> {
     const sensor$ = this.http.patch<Sensor>(
-      `http://localhost:3000/sensors/${sensorId}`,
+      `${this.apiURL}/sensors/${sensorId}`,
       sensorUpdate
     );
 
@@ -56,7 +58,7 @@ export class SensorsService {
 
   async deleteSensor(sensorId: string) {
     const sensor$ = this.http.delete<Sensor>(
-      `http://localhost:3000/sensors/${sensorId}`
+      `${this.apiURL}/sensors/${sensorId}`
     );
 
     return await firstValueFrom(sensor$);

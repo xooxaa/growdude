@@ -1,12 +1,17 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { SensorType } from '../models/sensor-type.model';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+
+import { SensorType } from '../models/sensor-type.model';
+
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SensortypeService {
+  apiURL = environment.apiURL;
+
   http = inject(HttpClient);
 
   #sensorTypes = signal<SensorType[]>([]);
@@ -18,7 +23,7 @@ export class SensortypeService {
 
   async getSensorTypes(): Promise<void> {
     const sensorTypes$ = this.http.get<SensorType[]>(
-      `http://localhost:3000/sensors/types`
+      `${this.apiURL}/sensors/types`
     );
     const sensorTypes = await firstValueFrom(sensorTypes$);
 

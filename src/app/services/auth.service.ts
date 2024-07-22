@@ -1,14 +1,18 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+
 import { User } from '../models/user.model';
 
+import { environment } from '../../environments/environment';
 const USER_STORAGE_KEY = 'user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  apiURL = environment.apiURL;
+
   http = inject(HttpClient);
 
   #user = signal<User | null>(null);
@@ -42,7 +46,7 @@ export class AuthService {
     email: string,
     password: string
   ): Promise<User> {
-    const register$ = this.http.put<User>(`http://localhost:3000/auth/signup`, {
+    const register$ = this.http.put<User>(`${this.apiURL}/auth/signup`, {
       name,
       email,
       password,
@@ -55,7 +59,7 @@ export class AuthService {
   }
 
   async loginExistingUser(email: string, password: string): Promise<User> {
-    const login$ = this.http.post<User>(`http://localhost:3000/auth/signin`, {
+    const login$ = this.http.post<User>(`${this.apiURL}/auth/signin`, {
       email,
       password,
     });
@@ -67,10 +71,7 @@ export class AuthService {
   }
 
   async logoutCurrentUser() {
-    const logout$ = this.http.post<User>(
-      `http://localhost:3000/auth/signout`,
-      {}
-    );
+    const logout$ = this.http.post<User>(`${this.apiURL}/auth/signout`, {});
 
     const response = await firstValueFrom(logout$);
     this.#user.set(null);
@@ -83,7 +84,7 @@ export class AuthService {
     };
 
     const updateUser$ = this.http.patch<User>(
-      `http://localhost:3000/auth/${userId}`,
+      `${this.apiURL}/auth/${userId}`,
       updateUserDto
     );
 
@@ -94,9 +95,7 @@ export class AuthService {
 
   async deleteUser() {
     const userId = this.#user()?.id;
-    const remove$ = this.http.delete<User>(
-      `http://localhost:3000/auth/${userId}`
-    );
+    const remove$ = this.http.delete<User>(`${this.apiURL}/auth/${userId}`);
 
     const response = await firstValueFrom(remove$);
 
