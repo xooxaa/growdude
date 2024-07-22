@@ -31,8 +31,8 @@ export class UserLoginComponent {
   formBuilder = inject(FormBuilder);
 
   loginForm = this.formBuilder.group({
-    email: ['gardener@420.com'],
-    password: ['fh4387h78f34/HRd32/(D32'],
+    email: [''],
+    password: [''],
   });
 
   isLoggedIn = this.authService.isLoggedIn;
