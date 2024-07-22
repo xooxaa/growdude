@@ -134,7 +134,7 @@
       style="width: 100%"
     >
       <div class="ms-3">
-        {{ data.timestamp | date : "dd.MM.YYYY - HH:mm:ss" }}
+        {{ data.timestamp | date : "dd.MM.YYYY - HH:mm" }}
       </div>
       <div class="sensordata-value">
         {{ data.value
@@ -148,6 +148,6 @@
 } } @else {
 <p>
   Für diesen Sensor wurden noch keine Messwerte erfasst. Du kannst jetzt mit
-  einem Klick auf das + den ersten Datensatz eingeben.
+  einem Klick auf das + den ersten Datensatz anlegen.
 </p>
 } }
