@@ -22,23 +22,22 @@ import {
 import { SensorData } from '../../models/sensordata.model';
 
 @Component({
-  selector: 'app-edit-sensordata-dialog',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './edit-sensordata-dialog.component.html',
-  styleUrl: './edit-sensordata-dialog.component.css',
+    selector: 'app-edit-sensordata-dialog',
+    imports: [
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './edit-sensordata-dialog.component.html',
+    styleUrl: './edit-sensordata-dialog.component.css'
 })
 export class EditSensordataDialogComponent {
   dialogRef = inject(MatDialogRef);

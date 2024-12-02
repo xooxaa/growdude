@@ -10,18 +10,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-user-register',
-  standalone: true,
-  imports: [
-    RouterLink,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
-  templateUrl: './user-register.component.html',
-  styleUrl: './user-register.component.css',
+    selector: 'app-user-register',
+    imports: [
+        RouterLink,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+    ],
+    templateUrl: './user-register.component.html',
+    styleUrl: './user-register.component.css'
 })
 export class UserRegisterComponent {
   authService = inject(AuthService);

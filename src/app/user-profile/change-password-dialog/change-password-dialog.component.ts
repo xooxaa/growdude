@@ -16,20 +16,19 @@ import {
 } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-password-dialog',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-  ],
-  templateUrl: './change-password-dialog.component.html',
-  styleUrl: './change-password-dialog.component.css',
+    selector: 'app-password-dialog',
+    imports: [
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+    ],
+    templateUrl: './change-password-dialog.component.html',
+    styleUrl: './change-password-dialog.component.css'
 })
 export class ChangePasswordDialogComponent {
   dialogRef = inject(MatDialogRef);

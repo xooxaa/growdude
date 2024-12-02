@@ -8,17 +8,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AuthService } from './services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterLink,
-    RouterOutlet,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+    selector: 'app-root',
+    imports: [
+        RouterLink,
+        RouterOutlet,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   authService = inject(AuthService);

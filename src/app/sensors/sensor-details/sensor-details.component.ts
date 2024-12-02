@@ -25,20 +25,19 @@ import { openEditSensordataDialog } from '../edit-sensordata-dialog/edit-sensord
 import { ColorBackgroundComponent } from '../../utils/color-background/color-background.component';
 
 @Component({
-  selector: 'app-sensor-details',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    ColorBackgroundComponent,
-    DatePipe,
-  ],
-  templateUrl: './sensor-details.component.html',
-  styleUrl: './sensor-details.component.css',
+    selector: 'app-sensor-details',
+    imports: [
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        ColorBackgroundComponent,
+        DatePipe,
+    ],
+    templateUrl: './sensor-details.component.html',
+    styleUrl: './sensor-details.component.css'
 })
 export class SensorDetailsComponent {
   stationsService = inject(StationsService);

@@ -12,16 +12,15 @@ import {
 import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-confirm-dialog',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-  ],
-  templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.css',
+    selector: 'app-confirm-dialog',
+    imports: [
+        MatButtonModule,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+    ],
+    templateUrl: './confirm-dialog.component.html',
+    styleUrl: './confirm-dialog.component.css'
 })
 export class ConfirmDialogComponent {
   dialogRef = inject(MatDialogRef);

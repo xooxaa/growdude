@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-color-background',
-  standalone: true,
-  imports: [],
-  templateUrl: './color-background.component.html',
-  styleUrl: './color-background.component.css',
+    selector: 'app-color-background',
+    imports: [],
+    templateUrl: './color-background.component.html',
+    styleUrl: './color-background.component.css'
 })
 export class ColorBackgroundComponent {
   @Input() value: number = 0;

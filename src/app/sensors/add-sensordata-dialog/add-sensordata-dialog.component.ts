@@ -19,23 +19,22 @@ import {
 } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-sensordata-dialog',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './add-sensordata-dialog.component.html',
-  styleUrl: './add-sensordata-dialog.component.css',
+    selector: 'app-add-sensordata-dialog',
+    imports: [
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './add-sensordata-dialog.component.html',
+    styleUrl: './add-sensordata-dialog.component.css'
 })
 export class AddSensordataDialogComponent {
   dialogRef = inject(MatDialogRef);

@@ -17,19 +17,18 @@ import {
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-delete-dialog',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-  ],
-  templateUrl: './delete-user-dialog.component.html',
-  styleUrl: './delete-user-dialog.component.css',
+    selector: 'app-delete-dialog',
+    imports: [
+        MatButtonModule,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+    ],
+    templateUrl: './delete-user-dialog.component.html',
+    styleUrl: './delete-user-dialog.component.css'
 })
 export class DeleteUserDialogComponent {
   authService = inject(AuthService);
