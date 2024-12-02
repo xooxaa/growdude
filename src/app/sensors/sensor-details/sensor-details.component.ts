@@ -25,19 +25,19 @@ import { openEditSensordataDialog } from '../edit-sensordata-dialog/edit-sensord
 import { ColorBackgroundComponent } from '../../utils/color-background/color-background.component';
 
 @Component({
-    selector: 'app-sensor-details',
-    imports: [
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        ColorBackgroundComponent,
-        DatePipe,
-    ],
-    templateUrl: './sensor-details.component.html',
-    styleUrl: './sensor-details.component.css'
+  selector: 'app-sensor-details',
+  imports: [
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ColorBackgroundComponent,
+    DatePipe,
+  ],
+  templateUrl: './sensor-details.component.html',
+  styleUrl: './sensor-details.component.css',
 })
 export class SensorDetailsComponent {
   stationsService = inject(StationsService);
@@ -229,7 +229,7 @@ export class SensorDetailsComponent {
     const deleteSensorData = await openConfirmDialog(
       this.dialog,
       'Sensor löschen',
-      'Soll dieser Sensor wirklich gelöscht werden?'
+      'Soll dieser Datensatz wirklich gelöscht werden?'
     );
 
     if (deleteSensorData) {
@@ -241,7 +241,7 @@ export class SensorDetailsComponent {
         this.snackbar.openSnackBar('Datensatz wurde gelöscht');
         this.getSensordata(this.sensor()!.id);
       } catch {
-        this.snackbar.openSnackBar('Sensor konnte nicht gelöscht werden');
+        this.snackbar.openSnackBar('Datensatz konnte nicht gelöscht werden');
       }
     }
   }
