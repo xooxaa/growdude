@@ -43,6 +43,7 @@ export class UserRegisterComponent {
       await this.authService.registerNewUser(name, email, password);
       await this.router.navigate(['/dashboard']);
     } catch {
+      //TODO Snackbar message according to error
       console.error('Unable to register');
     }
   }
