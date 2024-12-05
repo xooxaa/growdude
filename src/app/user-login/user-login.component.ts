@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -11,17 +11,16 @@ import { AuthService } from '../services/auth.service';
 import { SnackbarService } from '../services/snackbar.service';
 
 @Component({
-    selector: 'app-user-login',
-    imports: [
-        RouterLink,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-    ],
-    templateUrl: './user-login.component.html',
-    styleUrl: './user-login.component.css'
+  selector: 'app-user-login',
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
+  templateUrl: './user-login.component.html',
+  styleUrl: './user-login.component.css',
 })
 export class UserLoginComponent {
   authService = inject(AuthService);

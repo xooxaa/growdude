@@ -6,10 +6,10 @@ import { Sensor } from '../../models/sensor.model';
 import { TruncatePipe } from '../../utils/truncate.pipe';
 
 @Component({
-    selector: 'app-sensor-card',
-    imports: [RouterLink, TruncatePipe],
-    templateUrl: './sensor-card.component.html',
-    styleUrl: './sensor-card.component.css'
+  selector: 'app-sensor-card',
+  imports: [RouterLink, TruncatePipe],
+  templateUrl: './sensor-card.component.html',
+  styleUrl: './sensor-card.component.css',
 })
 export class SensorCardComponent {
   sensortypeService = inject(SensortypeService);

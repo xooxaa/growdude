@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Sensor } from '../models/sensor.model';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';

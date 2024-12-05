@@ -18,17 +18,17 @@ import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.compo
 import { openConfirmDialog } from '../../utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
-    selector: 'app-station-details',
-    imports: [
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        SensorCardComponent,
-    ],
-    templateUrl: './station-details.component.html',
-    styleUrl: './station-details.component.css'
+  selector: 'app-station-details',
+  imports: [
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    SensorCardComponent,
+  ],
+  templateUrl: './station-details.component.html',
+  styleUrl: './station-details.component.css',
 })
 export class StationDetailsComponent {
   stationsService = inject(StationsService);

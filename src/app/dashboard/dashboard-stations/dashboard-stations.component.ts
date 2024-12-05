@@ -9,10 +9,10 @@ import { Station } from '../../models/station.model';
 import { TruncatePipe } from '../../utils/truncate.pipe';
 
 @Component({
-    selector: 'app-dashboard-stations',
-    imports: [RouterLink, MatButtonModule, MatIconModule, TruncatePipe],
-    templateUrl: './dashboard-stations.component.html',
-    styleUrl: './dashboard-stations.component.css'
+  selector: 'app-dashboard-stations',
+  imports: [RouterLink, MatButtonModule, MatIconModule, TruncatePipe],
+  templateUrl: './dashboard-stations.component.html',
+  styleUrl: './dashboard-stations.component.css',
 })
 export class DashboardStationsComponent {
   stationsService = inject(StationsService);

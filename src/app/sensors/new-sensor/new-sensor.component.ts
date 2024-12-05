@@ -16,18 +16,18 @@ import { SensorCreate } from '../../models/sensor-create.model';
 import { Station } from '../../models/station.model';
 
 @Component({
-    selector: 'app-new-sensor',
-    imports: [
-        ReactiveFormsModule,
-        RouterLink,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatSelectModule,
-        MatButtonModule,
-    ],
-    templateUrl: './new-sensor.component.html',
-    styleUrl: './new-sensor.component.css'
+  selector: 'app-new-sensor',
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+  ],
+  templateUrl: './new-sensor.component.html',
+  styleUrl: './new-sensor.component.css',
 })
 export class NewSensorComponent {
   sensorsService = inject(SensorsService);

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,17 +10,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-    selector: 'app-user-register',
-    imports: [
-        RouterLink,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-    ],
-    templateUrl: './user-register.component.html',
-    styleUrl: './user-register.component.css'
+  selector: 'app-user-register',
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
+  templateUrl: './user-register.component.html',
+  styleUrl: './user-register.component.css',
 })
 export class UserRegisterComponent {
   authService = inject(AuthService);

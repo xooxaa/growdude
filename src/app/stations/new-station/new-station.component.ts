@@ -12,17 +12,17 @@ import { StationsService } from '../../services/stations.service';
 import { StationCreate } from '../../models/station-create.model';
 
 @Component({
-    selector: 'app-new-station',
-    imports: [
-        ReactiveFormsModule,
-        RouterLink,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonModule,
-    ],
-    templateUrl: './new-station.component.html',
-    styleUrl: './new-station.component.css'
+  selector: 'app-new-station',
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
+  templateUrl: './new-station.component.html',
+  styleUrl: './new-station.component.css',
 })
 export class NewStationComponent {
   stationsService = inject(StationsService);

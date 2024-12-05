@@ -10,10 +10,10 @@ import { openDeleteUserDialog } from './delete-user-dialog/delete-user-dialog.co
 import { openChangePasswordDialog } from './change-password-dialog/change-password-dialog.component';
 
 @Component({
-    selector: 'app-user-profile',
-    imports: [MatButtonModule],
-    templateUrl: './user-profile.component.html',
-    styleUrl: './user-profile.component.css'
+  selector: 'app-user-profile',
+  imports: [MatButtonModule],
+  templateUrl: './user-profile.component.html',
+  styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
   authService = inject(AuthService);

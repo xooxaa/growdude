@@ -8,20 +8,13 @@ import { SensorsService } from '../../services/sensors.service';
 import { SensordataService } from '../../services/sensordata.service';
 import { SensortypeService } from '../../services/sensortype.service';
 import { Sensor } from '../../models/sensor.model';
-import { TruncatePipe } from '../../utils/truncate.pipe';
 import { SensorCardComponent } from '../../sensors/sensor-card/sensor-card.component';
 
 @Component({
-    selector: 'app-dashboard-sensors',
-    imports: [
-        RouterLink,
-        MatButtonModule,
-        MatIconModule,
-        TruncatePipe,
-        SensorCardComponent,
-    ],
-    templateUrl: './dashboard-sensors.component.html',
-    styleUrl: './dashboard-sensors.component.css'
+  selector: 'app-dashboard-sensors',
+  imports: [RouterLink, MatButtonModule, MatIconModule, SensorCardComponent],
+  templateUrl: './dashboard-sensors.component.html',
+  styleUrl: './dashboard-sensors.component.css',
 })
 export class DashboardSensorsComponent {
   sensorsService = inject(SensorsService);

@@ -4,9 +4,9 @@ import { DashboardStationsComponent } from './dashboard-stations/dashboard-stati
 import { DashboardSensorsComponent } from './dashboard-sensors/dashboard-sensors.component';
 
 @Component({
-    selector: 'app-dashboard',
-    imports: [DashboardStationsComponent, DashboardSensorsComponent],
-    templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.css'
+  selector: 'app-dashboard',
+  imports: [DashboardStationsComponent, DashboardSensorsComponent],
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {}
