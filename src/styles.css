@@ -12,3 +12,7 @@ body {
 mat-icon {
   color: inherit !important;
 }
+
+mat-form-field {
+  width: 100%;
+}
